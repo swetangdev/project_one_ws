@@ -9,7 +9,7 @@
 -->
 <launch>
 
-  <arg name="model" default="$(find project_one)/urdf/robot_visual.urdf"/>
+  <arg name="model" default="$(find project_one)/urdf/robot_base.urdf.xacro"/>
   <arg name="gui" default="true" />
   <arg name="rvizconfig" default="$(find project_one)/rviz/urdf.rviz" />
   <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
