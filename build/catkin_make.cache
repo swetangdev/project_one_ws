@@ -1,0 +1,2 @@
+m2wr_description:project_one
+-DCATKIN_DEVEL_PREFIX=/home/swetang/project_one_ws/devel -DCMAKE_INSTALL_PREFIX=/home/swetang/project_one_ws/install -G Unix Makefiles

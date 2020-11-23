@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robot_essentials">
+	<xacro:macro name="robot_wheel" params="prefix originY">
+		  <link name="${prefix}_leg">
+			<visual>
+			  <geometry>
+				<box size="0.6 0.1 0.2"/>
+			  </geometry>
+			  <origin rpy="0 1.57075 0" xyz="0 0 -0.3"/>
+			  <material name="white"/>
+			</visual>
+		  </link>
+
+		  <joint name="base_to_${prefix}_leg" type="fixed">
+			<parent link="base_link"/>
+			<child link="${prefix}_leg"/>
+			<origin xyz="0 ${originY} 0.25"/>
+		  </joint>
+
+		  <link name="${prefix}_base">
+			<visual>
+			  <geometry>
+				<box size="0.4 0.1 0.1"/>
+			  </geometry>
+			  <material name="white"/>
+			</visual>
+		  </link>
+
+		  <joint name="${prefix}_base_joint" type="fixed">
+			<parent link="${prefix}_leg"/>
+			<child link="${prefix}_base"/>
+			<origin xyz="0 0 -0.6"/>
+		  </joint>
+
+		  <link name="${prefix}_front_wheel">
+			<visual>
+			  <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+			  <geometry>
+				<cylinder length="0.1" radius="0.035"/>
+			  </geometry>
+			  <material name="black"/>
+			  <origin rpy="0 0 0" xyz="0 0 0"/>
+			</visual>
+		  </link>
+		  <joint name="${prefix}_front_wheel_joint" type="continuous">
+			<axis rpy="0 0 0" xyz="0 1 0"/>
+			<parent link="${prefix}_base"/>
+			<child link="${prefix}_front_wheel"/>
+			<origin rpy="0 0 0" xyz="0.133333333333 0 -0.085"/>
+		  </joint>
+
+		  <link name="${prefix}_back_wheel">
+			<visual>
+			  <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+			  <geometry>
+				<cylinder length="0.1" radius="0.035"/>
+			  </geometry>
+			  <material name="black"/>
+			</visual>
+		  </link>
+		  <joint name="${prefix}_back_wheel_joint" type="continuous">
+			<axis rpy="0 0 0" xyz="0 1 0"/>
+			<parent link="${prefix}_base"/>
+			<child link="${prefix}_back_wheel"/>
+			<origin rpy="0 0 0" xyz="-0.133333333333 0 -0.085"/>
+		  </joint>
+	</xacro:macro>
+</robot>
