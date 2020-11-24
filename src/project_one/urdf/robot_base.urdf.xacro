@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro" name="visual">
 
+  <!-- defining different properties --> 
   <xacro:property name="width" value="0.2" />
   <xacro:property name="leglen" value="0.6" />
   <xacro:property name="polelen" value="0.2" />
@@ -20,8 +21,10 @@
     <color rgba="1 1 1 1"/>
   </material>
 
+  <!-- inertia xacro -->
   <xacro:include filename="$(find project_one)/urdf/robot_inertial_essentials.xacro" />
   
+
   <link name="base_link">
     <visual>
       <geometry>
@@ -38,8 +41,7 @@
   </link>
 
   <xacro:include filename="$(find project_one)/urdf/robot_essentials.xacro" />
-<!--	<xacro:robot_wheel prefix="right" originY="-0.22" />
-	<xacro:robot_wheel prefix="left" originY="0.22"/> -->
+
   <xacro:leg prefix="right" reflect="-1" />
   <xacro:leg prefix="left" reflect="1" />
 
@@ -68,6 +70,7 @@
     <xacro:default_inertial mass="0.05"/>
   </link>
 
+
   <transmission name="gripper_extension_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <actuator name="gripper_extension_motor">
@@ -80,7 +83,7 @@
 
   <xacro:include filename="$(find project_one)/urdf/robot_gripper.xacro" />
   <xacro:gripper prefix="left" reflect="1" />
-  <xacro:gripper prefix="right" reflect="-1" />
+  <xacro:gripper prefix="right" reflect="-1" /> 
 
   <link name="head">
     <visual>
@@ -137,7 +140,7 @@
     <parent link="head"/>
     <child link="box"/>
     <origin xyz="${.707*width+0.04} 0 ${.707*width}"/>
-  </joint>
+  </joint> 
   <!-- Gazebo plugin for ROS Control -->
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
